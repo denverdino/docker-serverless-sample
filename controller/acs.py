@@ -1,6 +1,6 @@
 import docker
 
-class AliyunContainerServiceClient(docker.Client):
+class Client(docker.Client):
     def __init__(self, *args, **kwargs):
         super(AliyunContainerServiceClient, self).__init__(*args, **kwargs)
 

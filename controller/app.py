@@ -15,7 +15,7 @@ def init_clients():
     )
     cluster_url = os.environ.get('CLUSTER_URL')
     docker_client = docker.Client(base_url=cluster_url, tls=tls_config)
-    acs_client = acs.AliyunContainerServiceClient(base_url=cluster_url, tls=tls_config)
+    acs_client = acs.Client(base_url=cluster_url, tls=tls_config)
 
 
 @app.route('/test1')
