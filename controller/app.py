@@ -7,15 +7,11 @@ import acs
 app = Flask(__name__)
 docker_client = None
 acs_client = None
-
-def init_clients():  
-    tls_config = docker.tls.TLSConfig(
-        client_cert=('/etc/docker/service.pem', '/etc/docker/service-key.pem'),
-        verify='/etc/docker/acs-ca.pem'
-    )
-    cluster_url = os.environ.get('CLUSTER_URL')
-    docker_client = docker.Client(base_url=cluster_url, tls=tls_config)
-    acs_client = acs.Client(base_url=cluster_url, tls=tls_config)
+cluster_url = os.environ.get('CLUSTER_URL')
+tls_config = docker.tls.TLSConfig(
+    client_cert=('/etc/docker/service.pem', '/etc/docker/service-key.pem'),
+    verify='/etc/docker/acs-ca.pem'
+)
 
 
 @app.route('/test1')
@@ -50,5 +46,7 @@ def hello_from_aliyun():
 
 
 if __name__ == '__main__':
-    init_clients()
+    docker_client = docker.Client(base_url=cluster_url, tls=tls_config)
+    acs_client = acs.Client(base_url=cluster_url, tls=tls_config)
     app.run(host="0.0.0.0", debug=True)
+
