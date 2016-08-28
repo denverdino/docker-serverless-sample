@@ -16,7 +16,7 @@ tls_config = docker.tls.TLSConfig(
 
 @app.route('/test1')
 def hello_from_docker():
-    container = docker_client.create_container('busybox')
+    container = docker_client.create_container('hello-world')
     docker_client.start(container)
     return 'Hello World from container %s!' % container
 
@@ -32,7 +32,6 @@ services:
     cpu_shares:  10
     mem_limit: 100000000
     labels:
-      aliyun.addon: "serverless"
       aliyun.scale: "10"
       aliyun.retry_count: "20"
       aliyun.remove_containers: "remove-all"
