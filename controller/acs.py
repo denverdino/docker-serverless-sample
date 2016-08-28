@@ -7,8 +7,8 @@ class Client(docker.Client):
     def projects(self, q=None, services=True, containers=True):
         u = self._url('/projects/')
         params = {
-        	'q': q,
-        	'services': services,
+            'q': q,
+            'services': services,
             'containers': containers
         }
         res = self._result(self._get(u, params=params), True)
@@ -20,7 +20,7 @@ class Client(docker.Client):
         )
 
     def create_project(self, name, description='', version='1.0', template='', environment=None):
-    	data = {
+        data = {
             'name': name,
             'description': description,
             'version': version,
