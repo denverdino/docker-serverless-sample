@@ -2,7 +2,7 @@ import docker
 
 class Client(docker.Client):
     def __init__(self, *args, **kwargs):
-        super(AliyunContainerServiceClient, self).__init__(*args, **kwargs)
+        super(Client, self).__init__(*args, **kwargs)
 
     def projects(self, q=None, services=True, containers=True):
         u = self._url('/projects/')
